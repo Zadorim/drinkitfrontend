@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './HomePage'; 
+import SomeModal from './SomeModal'; 
+import Navbar from './Navbar'; 
+import Footer from './Footer';
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const hideModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App">      
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage showModal={showModal} />} />
+          {/* További Route-k ha szükséges */}
+        </Routes>
+        <SomeModal isOpen={isModalOpen} onClose={hideModal} />
+        <Footer />      
     </div>
   );
 }
 
 export default App;
+
