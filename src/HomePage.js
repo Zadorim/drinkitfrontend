@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import AgeConfirmationModal from './AgeConfirmationModal';
 
 
-
-const HomePage = ({ showModal }) => {
+const Homepage = ({ showModal }) => {
   const [isOver18, setIsOver18] = useState(null);
   const [showAgeModal, setShowAgeModal] = useState(false);
 
@@ -45,5 +44,5 @@ const HomePage = ({ showModal }) => {
   );
 }
 
-export default HomePage;
+export default Homepage;
 

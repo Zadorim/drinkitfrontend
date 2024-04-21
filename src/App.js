@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import HomePage from './HomePage'; 
 import SomeModal from './SomeModal'; 
 import Navbar from './Navbar'; 
 import Footer from './Footer';
+import Homepage from './Homepage';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,7 +20,7 @@ function App() {
     <div className="App">      
         <Navbar />
         <Routes>
-          <Route path="/" element={<HomePage showModal={showModal} />} />
+          <Route path="/" element={<Homepage showModal={showModal} />} />
           {/* További Route-k ha szükséges */}
         </Routes>
         <SomeModal isOpen={isModalOpen} onClose={hideModal} />
