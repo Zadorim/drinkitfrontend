@@ -8,7 +8,7 @@ const SomeModal = ({ isOpen, onClose }) => {
       <div style={{ backgroundColor: 'white', padding: 20, borderRadius: 5 }}>
         <h2>Szép napot!</h2>
         <p>Üdvözölünk a DrinkIt webáruházban! Folytathatod a böngészést.</p>
-        <button onClick={onClose}>Bezár</button>
+        <button style={{backgroundColor: 'hsla(0, 100%, 50%, 0)', justifyContent: 'center'}} onClick={onClose}>Bezár</button>
       </div>
     </div>
   );

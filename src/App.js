@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, } from 'react-router-dom';
 import SomeModal from './SomeModal'; 
 import Navbar from './Navbar'; 
 import Footer from './Footer';
@@ -7,6 +7,9 @@ import Homepage from './Homepage';
 import Login from './Login';
 import Register from './Register';
 import Modal from './Modal';
+import AboutPage from './AboutPage';
+import Categories from './Categories';
+
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,16 +37,16 @@ function App() {
   const closeRegisterModal = () => {
     setIsRegisterModalOpen(false);
   };
-
-
+  
   return (
     <div className="App">      
-        <Navbar />
+      <Navbar />
         <Routes>
-          <Route path="/" element={<Homepage showModal={showModal} />} />
-          <Route path="/" element={<Login/>}/>
-          <Route path="/" element={<Register/>}/>
-          {/* További Route-k ha szükséges */}
+          <Route path="/" element={<Homepage showModal ={showModal} />} />
+          <Route path="/http://localhost:5130/auth/login" element={<Login/>}/>
+          <Route path="/http://localhost:5130/auth/register" element={<Register/>}/>
+          <Route path="/AboutPage" element={<AboutPage />} />
+          <Route path="/http://localhost:5130/api/Kategoriak" element={<Categories />} />   
         </Routes>
         <SomeModal isOpen={isModalOpen} onClose={hideModal} />
         <div>

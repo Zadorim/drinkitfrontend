@@ -23,8 +23,7 @@ code {
   margin: auto;
 }
 footer{
-  background-color: black;
-  color: white;
+  background-color: black; 
   padding: 10px;
   margin-top: 10px;
   font-weight: bold;
