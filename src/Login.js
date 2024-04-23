@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 function Login() {
@@ -13,12 +14,21 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Bejelentkezés a következő adatokkal:', username, password);
-    // Ide jöhet a bejelentkezési logika, pl. API hívás
-  };
-
+    try {
+      const response = await axios.post('http://localhost:5130/api/Felhasznalok/Bejelentkezes', {
+        username,
+        password
+      });
+      console.log('Bejelentkezés sikeres', response.data);
+      // Itt kezelheted tovább a bejelentkezett felhasználó adatait, pl. átirányítás
+    } catch (error) {
+      console.error('Bejelentkezési hiba', error.response);
+      // Itt kezelheted a hibákat, pl. hibás felhasználónév/jelszó
+    }
+  };  
+ 
   return (
     <form onSubmit={handleSubmit}>
       <div>

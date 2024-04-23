@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -42,11 +43,26 @@ function Register() {
   };
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Regisztráció a következő adatokkal:', username, password, email, fullName, iranyitoszam, varos, utca, hazszam);
-    // Itt jöhet a regisztrációs logika, pl. API hívás
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();   
+      try {
+        const response = await axios.post('http://localhost:5130/api/Felhasznalok/FelhasznaloHozzaadas', {
+          username,
+          password,
+          email,
+          fullName,
+          iranyitoszam,
+          varos,
+          utca,
+          hazszam
+        });
+        console.log('Regisztráció sikeres', response.data);
+        // Sikeres regisztráció kezelése, pl. átirányítás
+      } catch (error) {
+        console.error('Regisztrációs hiba', error.response);
+        // Hiba kezelése
+      }
+    };  
 
   return (
     <form onSubmit={handleSubmit}>      
