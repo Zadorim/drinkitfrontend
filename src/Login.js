@@ -49,7 +49,7 @@ function Login() {
           id="password"         
           value={password}
           onChange={handlePasswordChange}
-          required autocomplete="current-password"
+          required autoComplete="current-password"
         />
       </div>
       <button type="submit">Bejelentkezés</button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const categories = ["Szeszes italok", "Pálinka", "Sör, cider", "Borok és pezsgők", "Különlegességek", "Akciós termékek"];
 
@@ -10,12 +11,12 @@ const Categories = () => {
         {categories.map(category => (
           <React.Fragment key={category}>
           <li>{category}</li>
-          <li><a className="dropdown-item" href="">Szeszes italok</a></li>
-          <li><a className="dropdown-item" href="">Pálinka</a></li>
-          <li><a className="dropdown-item" href="">Sör, cider</a></li>
-          <li><a className="dropdown-item" href="">Borok és pezsgők</a></li>
-          <li><a className="dropdown-item" href="">Különlegességek</a></li>
-          <li><a className="dropdown-item" href="">Akciós termékek</a></li>
+          <li><Link className="dropdown-item" to="/Category1" >Szeszes italok</Link></li>
+          <li><Link className="dropdown-item" to="/Category2">Pálinka</Link></li>
+          <li><Link className="dropdown-item" to="/Category3">Sör, cider</Link></li>
+          <li><Link className="dropdown-item" to="/Category4">Borok és pezsgők</Link></li>
+          <li><Link className="dropdown-item" to="/Category5">Különlegességek</Link></li>
+          <li><Link className="dropdown-item" to="/Category6">Akciós termékek</Link></li>
           </React.Fragment>
         ))}
       </ul>

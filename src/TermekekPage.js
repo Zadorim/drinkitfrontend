@@ -11,13 +11,13 @@ function TermekekPage() {
 
     useEffect(() => {
         setFetchPending(true);
-        fetch(`http://localhost:5130/api/Termekek`)
+        fetch(`http://localhost:5130/api/termekek`)
         .then((response) =>response.json())
         .then((termekek) => setTermekek(termekek))
         .catch(console.log)
         .finally(() => {
             setFetchPending(false);
-            navigate('/');
+            //navigate('/');
         });
     }, [navigate]);
     return (
@@ -35,7 +35,7 @@ function TermekekPage() {
                             <p className="text-danger">{termek.leiras}</p> 
                             <p className="text-danger"> {termek.kategoriak}</p>                           
                             <div className="card-body">
-                                <Link key={termek.id} to={"/termek/" + termek.id}>
+                                <Link key={termek.id} to={"/termekek/" + termek.id}>
                                     <img alt={termek.nev}
                                         className="img-fluid"
                                         style={{ maxHeight: 200 }}

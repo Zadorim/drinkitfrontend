@@ -13,6 +13,7 @@ import Categories from './Categories';
 import  SearchProvider  from './SearchContext';
 import TermekekListaPage from './TermekekListPage';
 import TermekekPage from './TermekekPage';
+import AgeConfirmationModal from './AgeConfirmationModal';
 
 
 function App() {
@@ -48,9 +49,10 @@ function App() {
         <Navbar />
           <Routes>
             <Route path="/" element={<Homepage showModal ={showModal} />} />
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
+            <Route path="/Login" element={<Login/>}/>
+            <Route path="/Register" element={<Register/>}/>
             <Route path="/AboutPage" element={<AboutPage />} />
+            <Route path="/AgeConfirmationModal" element={<AgeConfirmationModal/>}/>
             <Route path="/Categories" element={<Categories />} /> 
             <Route path="/TermekekListPage" element={<TermekekListaPage />} />
             <Route path="/TermekekPage" element={<TermekekPage />} />    

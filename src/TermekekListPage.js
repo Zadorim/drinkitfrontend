@@ -18,7 +18,7 @@ function TermekekListPage() {
 
     const fetchProducts = () => {
         setFetchPending(true);
-        fetch(`http://localhost:5130/api/Termekek`)
+        fetch(`http://localhost:5130/api/termekek`)
             .then(response => response.json())
             .then(data => {
                 setTermekek(data);
