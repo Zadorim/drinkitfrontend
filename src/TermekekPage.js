@@ -1,25 +1,25 @@
 import React, {useState,useEffect} from "react";
-import { useHistory,NavLink } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 
 
 
-export function TermekekPage() {
+function TermekekPage() {
     
     const [termekek,setTermekek] = useState([]);
     const [isFetchPending, setFetchPending] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setFetchPending(true);
-        fetch(`http://localhost:5130/Termek`)
+        fetch(`http://localhost:5130/api/Termekek`)
         .then((response) =>response.json())
         .then((termekek) => setTermekek(termekek))
         .catch(console.log)
         .finally(() => {
             setFetchPending(false);
-            history.push("/");
+            navigate('/');
         });
-    }, []);
+    }, [navigate]);
     return (
         <div className="p-5 m-auto text-center content bg-ivory">
             {isFetchPending ? (
@@ -35,16 +35,16 @@ export function TermekekPage() {
                             <p className="text-danger">{termek.leiras}</p> 
                             <p className="text-danger"> {termek.kategoriak}</p>                           
                             <div className="card-body">
-                                <NavLink key={termek.id} to={"/termek/" + termek.id}>
+                                <Link key={termek.id} to={"/termek/" + termek.id}>
                                     <img alt={termek.nev}
                                         className="img-fluid"
                                         style={{ maxHeight: 200 }}
                                         src={termek.kepneve ? termek.kepneve :
-                                            "https://via.placeholder.com/400x800"} /></NavLink>
+                                            "https://via.placeholder.com/400x800"} /></Link>
                                 <br />
-                                <NavLink key="y" to={"/mod-termek/" + termek.id}>
-                                    <i className="bi bi-pencil"></i></NavLink> &nbsp;&nbsp;
-                                    <NavLink key="x" to={"/del-termek/" + termek.id}><i className="bi bi-trash3"></i></NavLink>
+                                <Link key="y" to={"/mod-termek/" + termek.id}>
+                                    <i className="bi bi-pencil"></i></Link> &nbsp;&nbsp;
+                                    <Link key="x" to={"/del-termek/" + termek.id}><i className="bi bi-trash3"></i></Link>
                             </div>
                         </div>
                     ))}

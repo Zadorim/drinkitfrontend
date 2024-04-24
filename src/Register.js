@@ -46,7 +46,7 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();   
       try {
-        const response = await axios.post('http://localhost:5130/api/Felhasznalok/FelhasznaloHozzaadas', {
+        const response = await axios.post('http://localhost:5130/auth/register', {
           username,
           password,
           email,

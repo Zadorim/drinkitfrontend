@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Route, Routes, } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
 import SomeModal from './SomeModal'; 
 import Navbar from './Navbar'; 
 import Footer from './Footer';
@@ -9,6 +10,9 @@ import Register from './Register';
 import Modal from './Modal';
 import AboutPage from './AboutPage';
 import Categories from './Categories';
+import  SearchProvider  from './SearchContext';
+import TermekekListaPage from './TermekekListPage';
+import TermekekPage from './TermekekPage';
 
 
 function App() {
@@ -39,30 +43,34 @@ function App() {
   };
   
   return (
-    <div className="App">      
-      <Navbar />
-        <Routes>
-          <Route path="/" element={<Homepage showModal ={showModal} />} />
-          <Route path="/http://localhost:5130/auth/login" element={<Login/>}/>
-          <Route path="/http://localhost:5130/auth/register" element={<Register/>}/>
-          <Route path="/AboutPage" element={<AboutPage />} />
-          <Route path="/http://localhost:5130/api/Kategoriak" element={<Categories />} />   
-        </Routes>
-        <SomeModal isOpen={isModalOpen} onClose={hideModal} />
+    <SearchProvider>
+      <div className="App">      
+        <Navbar />
+          <Routes>
+            <Route path="/" element={<Homepage showModal ={showModal} />} />
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+            <Route path="/AboutPage" element={<AboutPage />} />
+            <Route path="/Categories" element={<Categories />} /> 
+            <Route path="/TermekekListPage" element={<TermekekListaPage />} />
+            <Route path="/TermekekPage" element={<TermekekPage />} />    
+          </Routes>
+          <SomeModal isOpen={isModalOpen} onClose={hideModal} />
+          <div>
+            <button onClick={handleLoginClick}>Bejelentkezés</button>
+            <Modal isOpen={isLoginModalOpen} onClose={handleCloseModal}>
+            <Login />
+            </Modal>
+        </div>
         <div>
-          <button onClick={handleLoginClick}>Bejelentkezés</button>
-          <Modal isOpen={isLoginModalOpen} onClose={handleCloseModal}>
-          <Login />
+          <button onClick={handleRegisterClick}>Regisztráció</button>
+          <Modal isOpen={isRegisterModalOpen} onClose={closeRegisterModal}>
+            <Register onRegister={closeRegisterModal} />
           </Modal>
+        </div>
+          <Footer />      
       </div>
-      <div>
-        <button onClick={handleRegisterClick}>Regisztráció</button>
-        <Modal isOpen={isRegisterModalOpen} onClose={closeRegisterModal}>
-          <Register onRegister={closeRegisterModal} />
-        </Modal>
-      </div>
-        <Footer />      
-    </div>
+    </SearchProvider>
   );
 }
 

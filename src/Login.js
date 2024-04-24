@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,15 +18,15 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5130/api/Felhasznalok/Bejelentkezes', {
+      const response = await axios.post('http://localhost:5130/auth/login', {
         username,
         password
       });
       console.log('Bejelentkezés sikeres', response.data);
-      // Itt kezelheted tovább a bejelentkezett felhasználó adatait, pl. átirányítás
+      // Itt kezelhetem tovább a bejelentkezett felhasználó adatait, pl. átirányítás
     } catch (error) {
       console.error('Bejelentkezési hiba', error.response);
-      // Itt kezelheted a hibákat, pl. hibás felhasználónév/jelszó
+      // Itt kezelhetem a hibákat, pl. hibás felhasználónév/jelszó
     }
   };  
  
@@ -45,10 +46,10 @@ function Login() {
         <label htmlFor="password">Jelszó:</label>
         <input
           type="password"
-          id="password"
+          id="password"         
           value={password}
           onChange={handlePasswordChange}
-          required
+          required autocomplete="current-password"
         />
       </div>
       <button type="submit">Bejelentkezés</button>

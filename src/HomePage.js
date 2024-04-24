@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import AgeConfirmationModal from './AgeConfirmationModal';
 import SomeModal from './SomeModal';
 
@@ -14,7 +14,7 @@ const Homepage = (showModal) => {
     }
   }, [isOver18]); // Az useEffect csak akkor fut le, ha az isOver18 állapot megváltozik
 
-
+  const openAgeModal = () => setShowAgeModal(true);
   const handleAgeConfirmation = (answer) => {
     setIsOver18(answer);
     setShowAgeModal(false);
@@ -27,15 +27,13 @@ const Homepage = (showModal) => {
 
   const closeSomeModal = () => {
     setShowSomeModal(false);
-  };
+  }; 
+
 
   return (
     <div className="navbar-brand">
       <img src="img/DrinkIt.jpg" alt="DrinkIt" className='logo-icon' /> 
-      <button onClick={showModal}>Modál megjelenítése</button>     
-      {isOver18 === null && (
-        <button onClick={() => setShowAgeModal(true)}>Elmúltál 18 éves?</button>
-      )}
+      <button onClick={openAgeModal}>Belépés</button>  
       {isOver18 !== null && (
         <div>
           <h2>Vásárlási feltétel</h2>
