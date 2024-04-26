@@ -9,7 +9,6 @@ import Login from './Login';
 import Register from './Register';
 import Modal from './Modal';
 import AboutPage from './AboutPage';
-import Categories from './Categories';
 import  SearchProvider  from './SearchContext';
 import TermekekListaPage from './TermekekListPage';
 import TermekekPage from './TermekekPage';
@@ -52,8 +51,7 @@ function App() {
             <Route path="/Login" element={<Login/>}/>
             <Route path="/Register" element={<Register/>}/>
             <Route path="/AboutPage" element={<AboutPage />} />
-            <Route path="/AgeConfirmationModal" element={<AgeConfirmationModal/>}/>
-            <Route path="/Categories" element={<Categories />} /> 
+            <Route path="/AgeConfirmationModal" element={<AgeConfirmationModal/>}/>           
             <Route path="/TermekekListPage" element={<TermekekListaPage />} />
             <Route path="/TermekekPage" element={<TermekekPage />} />    
           </Routes>

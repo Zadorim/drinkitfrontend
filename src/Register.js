@@ -71,7 +71,7 @@ function Register() {
         <input
           type="text"
           id="username"
-          value={username}
+          //value={username}
           onChange={handleUsernameChange}
           required
         />

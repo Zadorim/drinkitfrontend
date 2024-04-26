@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Categories from "./Categories";
+
 
 
 function TermekekListPage() {
     const [termekek, setTermekek] = useState([]);
-    const {searchTerm, setSearchTerm} = useState("");
-    const [currentCategory, setCurrentCategory] = useState("All");
+    const {searchTerm, setSearchTerm} = useState("");   
     const [sortType, setSortType] = useState("asc");
     const [isFetchPending, setFetchPending] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -18,10 +17,11 @@ function TermekekListPage() {
 
     const fetchProducts = () => {
         setFetchPending(true);
-        fetch(`http://localhost:5130/api/termekek`)
+        fetch(`http://localhost:5130/api/Termekek/TermekLista`)
             .then(response => response.json())
             .then(data => {
                 setTermekek(data);
+                console.log(data)
                 setFetchPending(false);
             })
             .catch(error => {
@@ -33,23 +33,7 @@ function TermekekListPage() {
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
         setCurrentPage(1); 
-    };
-
-    const handleCategoryChange = (category) => {
-        setCurrentCategory(category);
-        setCurrentPage(1); 
-    };
-
-    const filteredProducts = termekek.filter(termek =>
-        (currentCategory === "All" || termek.kategoriak.includes(currentCategory)) &&
-        termek.nev.toLowerCase().includes(searchTerm.toLowerCase())
-    ).sort((a, b) => {
-        if (sortType === "asc") {
-            return a.ar - b.ar;
-        } else {
-            return b.ar - a.ar;
-        }
-    });
+    };   
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -61,8 +45,7 @@ function TermekekListPage() {
     }
 
     return (
-        <div>
-            <Categories onChangeCategory={handleCategoryChange} />
+        <div>            
             <input type="text" placeholder="Keresés..." onChange={handleSearchChange} />
             <button onClick={() => setSortType("asc")}>Ár szerint növekvő</button>
             <button onClick={() => setSortType("desc")}>Ár szerint csökkenő</button>

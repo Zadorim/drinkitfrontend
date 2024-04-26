@@ -27,20 +27,7 @@ const Navbar = ({onAgeCheck}) => {
             </li>
             <li className="nav-item">
               <Link className="nav-link active" to="/AgeConfirmationModal" onClick={onAgeCheck}>Vásárlási feltételek</Link>
-            </li>
-            <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle" to="/Categories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Kategóriák
-              </Link>
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="/Category1">Szeszes italok</Link></li>
-                <li><Link className="dropdown-item" to="/Category2">Pálinka</Link></li>
-                <li><Link className="dropdown-item" to="/Category3">Sör, cider</Link></li>
-                <li><Link className="dropdown-item" to="/Category4">Borok és pezsgők</Link></li>
-                <li><Link className="dropdown-item" to="/Category5">Különlegességek</Link></li>
-                <li><Link className="dropdown-item" to="/Category6">Akciós termékek</Link></li>
-              </ul>
-            </li>
+            </li>       
           </ul>
           <form className="d-flex" onSubmit={handleSearchSubmit}>
         <input
