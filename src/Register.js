@@ -11,37 +11,7 @@ function Register() {
   const [utca, setUtca] =useState('');
   const [hazszam, setHazszam] =useState('');
 
-  const handleUsernameChange = (event) => {
-    setUserName(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
   
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleTeljesNevChange = (event) => {
-    setTeljesNev(event.target.value);
-  };
-  const handleIranyitoszamChange = (event) => {
-    setIranyitoszam(event.target.value);
-  };
-  
-  const handleVarosChange = (event) => {
-    setVaros(event.target.value);
-  };
-  
-  const handleUtcaChange = (event) => {
-    setUtca(event.target.value);
-  };
-  
-  const handleHazszamChange = (event) => {
-    setHazszam(event.target.value);
-  };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();   
@@ -65,88 +35,40 @@ function Register() {
     };  
 
   return (
-    <form onSubmit={handleSubmit}>      
-      <div>
-        <h1>Regisztrálás</h1>
-        <label htmlFor="username">Felhasználónév:</label>
-        <input
-          type="text"
-          id="userName"
-          //value={username}
-          onChange={handleUsernameChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Jelszó:</label>
-        <input
-          type="text"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="teljesNev">Teljes név:</label>
-        <input
-          type="text"
-          id="teljesNev"
-          value={teljesNev}
-          onChange={handleTeljesNevChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={handleEmailChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="iranyitoszam">Iranyítószám:</label>
-        <input
-          type="number"
-          id="iranyitoszam"
-          value={iranyitoszam}
-          onChange={handleIranyitoszamChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="varos">Város:</label>
-        <input
-          type="text"
-          id="varos"
-          value={varos}
-          onChange={handleVarosChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="utca">Utca:</label>
-        <input
-          type="text"
-          id="utca"
-          value={utca}
-          onChange={handleUtcaChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="hazszam">Házszám:</label>
-        <input
-          type="number"
-          id="hazszam"
-          value={hazszam}
-          onChange={handleHazszamChange}
-          required
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="p-28" style={{backgroundColor: '#8ba5be', borderRadius: '10px'}}>
+    <div className="mb-1 ">
+      <h1 className="text-left mb-3">Regisztrálás</h1>
+      <label htmlFor="username" className="col-m-6 form-label">Felhasználónév:</label>
+      <input type="text" className="form-group" id="username" value={userName} onChange={(e) => setUserName(e.target.value)} required />
+    </div >
+    <div className="mb-1">
+      <label htmlFor="password" className="col-m-6 form-label">Jelszó:</label>
+      <input type="password" className="form-group" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+    </div>
+    <div className="mb-1">
+      <label htmlFor="email" className="col-m-6 form-label">Email:</label>
+      <input type="email" className="form-group" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    </div>
+    <div className="mb-1">
+      <label htmlFor="teljesNev" className="col-m-6 form-label">Teljes név:</label>
+      <input type="text" className="form-group" id="teljesNev" value={teljesNev} onChange={(e) => setTeljesNev(e.target.value)} required />
+    </div>
+    <div className="mb-1">
+      <label htmlFor="iranyitoszam" className="col-m-6 form-label">Irányítószám:</label>
+      <input type="text" className="form-group" id="iranyitoszam" value={iranyitoszam} onChange={(e) => setIranyitoszam(e.target.value)} required />
+    </div>
+    <div className="mb-1">
+      <label htmlFor="varos" className="col-m-6 form-label">Város:</label>
+      <input type="text" className="form-group" id="varos" value={varos} onChange={(e) => setVaros(e.target.value)} required />
+    </div>
+    <div className="mb-1">
+      <label htmlFor="utca" className="col-m-6 form-label">Utca:</label>
+      <input type="text" className="form-group" id="utca" value={utca} onChange={(e) => setUtca(e.target.value)} required />
+    </div>
+    <div className="mb-1">
+      <label htmlFor="hazszam" className="col-m-6 form-label">Házszám:</label>
+      <input type="number" className="form-group" id="hazszam" value={hazszam} onChange={(e) => setHazszam(e.target.value)} required />
+    </div>      
       <button type="submit">Regisztrál</button>
     </form>
   );

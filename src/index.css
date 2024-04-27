@@ -93,3 +93,6 @@ p{
 .carousel-caption h3, .carousel-caption p {
   color: white; 
 }
+label{
+  text-align: left bold;
+}

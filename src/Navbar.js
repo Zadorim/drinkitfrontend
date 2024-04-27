@@ -26,7 +26,7 @@ const Navbar = ({onLoginClick, onRegisterClick, onAgeCheck}) => {
               <Link className="nav-link active" to="/AboutPage">Főoldal</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/AgeConfirmationModal" onClick={onAgeCheck}>Vásárlási feltételek</Link>
+              <Link className="nav-link active" to="/TermekekPge" >Termékek</Link>
             </li>       
           </ul>
           <ul className="navbar-nav navbar-center">          
