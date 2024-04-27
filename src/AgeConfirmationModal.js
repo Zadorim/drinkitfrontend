@@ -17,4 +17,3 @@ const AgeConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
 }
 
 export default AgeConfirmationModal;
-

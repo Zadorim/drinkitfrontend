@@ -5,16 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(rgba(2,0,36,1) 0%, rgba(238,192,18,1) 42%, rgba(0,212,255,1) 100%);
+  background-attachment: fixed;
+  background: linear-gradient(
+     rgba(255,255,255,0.7),
+    rgba(255,255,255,0.3)    
+  ),  
 }
+  
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.navbar {  
- background-color: black;
-}
+
 .logo-icon{
   width: 100px; 
   height: auto;
@@ -26,7 +30,7 @@ footer{
   background-color: #f8f9fa; 
   padding: 10px 0;
   text-align: center;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #8ba5be;
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -40,5 +44,10 @@ main {
 }
 
 footer {
-  flex-shrink: 0; /* Ez a sor biztosítja, hogy a footer ne töltse ki a rendelkezésre lélo teret */
+  flex-shrink: 0; /* Ez a sor biztosítja, hogy a footer ne töltse ki a rendelkezésre lévő teret */
+}
+input{
+  padding: 10px;
+  margin: 15px; 
+  text-align: center;
 }

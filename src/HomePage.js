@@ -1,60 +1,50 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import AgeConfirmationModal from './AgeConfirmationModal';
 import SomeModal from './SomeModal';
 
-
-const Homepage = (showModal) => {
+const Homepage = ({ showModal, isAgeModalOpen, onAgeConfirm, onAgeCancel }) => {
   const [isOver18, setIsOver18] = useState(null);
-  const [showAgeModal, setShowAgeModal] = useState(false);
+  const [showAgeModal, setShowAgeModal] = useState(isOver18 === null);
   const [showSomeModal, setShowSomeModal] = useState(false);
   
   useEffect(() => {
     if (isOver18 !== null) {
       console.log(`A felhasználó korának megerősítése: ${isOver18 ? '18 éven felüli' : '18 éven aluli'}`);
     }
-  }, [isOver18]); // Az useEffect csak akkor fut le, ha az isOver18 állapot megváltozik
+  }, [isOver18]);
 
-  const openAgeModal = () => setShowAgeModal(true);
   const handleAgeConfirmation = (answer) => {
     setIsOver18(answer);
     setShowAgeModal(false);
     if (answer) {
-      setShowSomeModal(true);  // Mutassa a SomeModal-t ha 18 éven felüli
+      setShowSomeModal(true);
     } else {
-      setShowSomeModal(false); // Ne mutassa ha 18 éven aluli
+      setShowSomeModal(false);
     }
   };
 
   const closeSomeModal = () => {
     setShowSomeModal(false);
-  }; 
-
+  };
 
   return (
     <div className="navbar-brand">
-      <img src="img/DrinkIt.jpg" alt="DrinkIt" className='logo-icon' /> 
-      <button onClick={openAgeModal}>Belépés</button>  
-      {isOver18 !== null && (
-        <div>
-          <h2>Vásárlási feltétel</h2>
-          {isOver18 ? (
-            <SomeModal isOpen={showSomeModal} onClose={closeSomeModal} />
-          ) : (
-            <p>Sajnáljuk, de csak 18 éves vagy annál idősebb látogatók vásárolhatnak az oldalunkon.</p>
-          )}
-          <button onClick={closeSomeModal} aria-label="Modal bezárása">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      
+      {isOver18 === false && (
+        <p>Sajnáljuk, de csak 18 éves vagy annál idősebb látogatók vásárolhatnak az oldalunkon.</p>
       )}
-      <AgeConfirmationModal
-        isOpen={showAgeModal}
-        onConfirm={handleAgeConfirmation}
-        onCancel={handleAgeConfirmation}
-      />
+      {isOver18 === true && (
+        <SomeModal isOpen={showSomeModal} onClose={closeSomeModal} />
+      )}
+      {isOver18 === null && (
+        <AgeConfirmationModal
+          isOpen={showAgeModal}
+          onConfirm={handleAgeConfirmation}
+          onCancel={() => handleAgeConfirmation(false)}
+        />
+      )}
     </div>
   );
 }
 
 export default Homepage;
-

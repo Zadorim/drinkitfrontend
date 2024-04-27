@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Register() {
-  const [username, setUsername] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [email,setEmail] =useState('');
-  const [fullName, setFullName] = useState('');
+  const [teljesNev, setTeljesNev] = useState('');
   const [iranyitoszam, setIranyitoszam] =useState('');
   const [varos, setVaros] =useState('');
   const [utca, setUtca] =useState('');
   const [hazszam, setHazszam] =useState('');
 
   const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setUserName(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -23,8 +23,8 @@ function Register() {
     setEmail(event.target.value);
   };
 
-  const handleFullNameChange = (event) => {
-    setFullName(event.target.value);
+  const handleTeljesNevChange = (event) => {
+    setTeljesNev(event.target.value);
   };
   const handleIranyitoszamChange = (event) => {
     setIranyitoszam(event.target.value);
@@ -47,10 +47,10 @@ function Register() {
     event.preventDefault();   
       try {
         const response = await axios.post('http://localhost:5130/auth/register', {
-          username,
+          userName,
           password,
           email,
-          fullName,
+          teljesNev,
           iranyitoszam,
           varos,
           utca,
@@ -70,7 +70,7 @@ function Register() {
         <label htmlFor="username">Felhasználónév:</label>
         <input
           type="text"
-          id="username"
+          id="userName"
           //value={username}
           onChange={handleUsernameChange}
           required
@@ -87,12 +87,12 @@ function Register() {
         />
       </div>
       <div>
-        <label htmlFor="fullName">Teljes név:</label>
+        <label htmlFor="teljesNev">Teljes név:</label>
         <input
           type="text"
-          id="fullName"
-          value={fullName}
-          onChange={handleFullNameChange}
+          id="teljesNev"
+          value={teljesNev}
+          onChange={handleTeljesNevChange}
           required
         />
       </div>

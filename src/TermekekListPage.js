@@ -29,6 +29,9 @@ function TermekekListPage() {
                 setFetchPending(false);
             });
     };
+    const filteredProducts = termekek.filter(termek =>
+        termek.nev.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
