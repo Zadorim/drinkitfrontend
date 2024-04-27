@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import SomeModal from './SomeModal'; 
-import Navbar from './Navbar'; 
+import SomeModal from './SomeModal';
+import Navbar from './Navbar';
 import Footer from './Footer';
-import Homepage from './Homepage';
+import Homepage from './HomePage';
 import Login from './Login';
 import Register from './Register';
 import Modal from './Modal';
@@ -17,12 +17,13 @@ import AgeConfirmationModal from './AgeConfirmationModal';
 
 
 function App() {
+  const [token, setToken] = useState('');
+
   // Állapotok és azok kezelői a modalok számára
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isAgeModalOpen, setIsAgeModalOpen] = useState(false);
-  const [token, setToken] = useState('');
 
   // Kezelő függvények a modalok megjelenítéséhez és elrejtéséhez
   const showModal = () => setIsModalOpen(true);
@@ -46,18 +47,18 @@ function App() {
   return (
     <SearchProvider>
       <div className="App">
-        <Navbar onLoginClick={handleLoginClick} onRegisterClick={handleRegisterClick} onAgeCheck={onAgeCheck}/>
+        <Navbar onLoginClick={handleLoginClick} onRegisterClick={handleRegisterClick} onAgeCheck={onAgeCheck} />
         <Routes>
-          <Route path="/" element={<Homepage showModal={showModal} isAgeModalOpen={isAgeModalOpen} onAgeConfirm={handleAgeConfirm}/>} />
-          <Route path="/Login" element={<Login/>}/>
-          <Route path="/Register" element={<Register/>}/>
+          <Route path="/" element={<Homepage showModal={showModal} isAgeModalOpen={isAgeModalOpen} onAgeConfirm={handleAgeConfirm} />} />
+          <Route path="/Login" element={<Login setToken={setToken} />} />
+          <Route path="/Register" element={<Register />} />
           <Route path="/AboutPage" element={<AboutPage />} />
-          <Route path='/AgeConfirmationModal' element={<AgeConfirmationModal/>}></Route>          
+          <Route path='/AgeConfirmationModal' element={<AgeConfirmationModal />}></Route>
           <Route path="/TermekekListPage" element={<TermekekListaPage />} />
           <Route path="/TermekekPage" element={<TermekekPage />} />
         </Routes>
         <SomeModal isOpen={isModalOpen} onClose={hideModal} />
-       
+
         <div>
           <Modal isOpen={isLoginModalOpen} onClose={handleCloseModal}>
             <Login />
@@ -75,6 +76,3 @@ function App() {
 }
 
 export default App;
-
-
-

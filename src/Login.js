@@ -3,12 +3,11 @@ import axios from 'axios';
 
 
 
-function Login() {
+function Login({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const  [token, setToken] = useState('');
-  const  [data, setData] = useState('');
-  
+  const [data, setData] = useState('');
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -19,16 +18,21 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username,password);
+    console.log(username, password);
     setUsername('');
     setPassword('');
     try {
       const response = await axios.post('http://localhost:5130/auth/login', {
-        username,
-        password});
-        setToken(response.data.setToken)
-      console.log('Bejelentkezés sikeres', response.data);
-      // Itt kezelhetem tovább a bejelentkezett felhasználó adatait, pl. átirányítás     
+        userName: username,
+        password: password
+      });
+      setToken(response.data.token)
+      if (response.data.token == '') {
+        console.log("sikertelen bejelentkezés");
+        return
+      }
+      console.log("sikeres bejelentkezés: " + response.data.token);
+      // Itt kezelhetem tovább a bejelentkezett felhasználó adatait, pl. átirányítás
     } catch (error) {
       /*if (!error?.response) {
         setErrorMsg('Bejelentkezési hiba');
@@ -39,18 +43,18 @@ function Login() {
       } else {
         setErrorMsg("Hibás bejelentkezés");
       }*/
-      console.error('Bejelentkezési hiba', error.response );
+      console.error('Bejelentkezési hiba', error.response);
       // Itt kezelhetem a hibákat, pl. hibás felhasználónév/jelszó
-    
+
     }
-  };  
+  };
   /*const fetchData = async  () => {
     try {
       const response = await axios.get('http://localhost:5130/auth/login', {
         headers: {
           Authorization:`Bearer ${token}`
         }
-    });            
+    });
       setData(response.data);
     } catch (error) {
       console.error("Adatok lekérése sikertelen!", error);
@@ -69,15 +73,15 @@ function Login() {
           value={username}
           autoComplete='off'
           onChange={handleUsernameChange}
-          //onChange={(e) => setUsername(e.target.value)}          
-          required /><br/>        
+          //onChange={(e) => setUsername(e.target.value)}
+          required /><br />
       </div>
       <div className='form-group'>
         <label htmlFor="password">Jelszó:</label>
         <input
           type="password"
           className='form-control'
-          id="password"         
+          id="password"
           value={password}
           onChange={handlePasswordChange}
           required autoComplete="current-password"
