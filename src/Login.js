@@ -60,6 +60,7 @@ function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <div className='container'>
+        <h1>Bejelentkezés</h1>
         <label htmlFor="username">Felhasználónév:</label>
         <input
           type="text"

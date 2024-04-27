@@ -22,6 +22,7 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isAgeModalOpen, setIsAgeModalOpen] = useState(false);
+  const [token, setToken] = useState('');
 
   // Kezelő függvények a modalok megjelenítéséhez és elrejtéséhez
   const showModal = () => setIsModalOpen(true);

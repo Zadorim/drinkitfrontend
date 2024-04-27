@@ -12,13 +12,10 @@ body {
   ),  
 }
   
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 .logo-icon{
   width: 100px; 
   height: auto;
@@ -39,15 +36,44 @@ footer{
   flex-direction: column;
   min-height: 100vh;
 }
+
 main {
   flex: 1; /* Ez a rész biztosítja, hogy a tartalom kitöltse a rendelkezésre álló teret */
 }
 
 footer {
-  flex-shrink: 0; /* Ez a sor biztosítja, hogy a footer ne töltse ki a rendelkezésre lévő teret */
+  flex-shrink: 10px; /*Ez a sor biztosítja, hogy a footer ne töltse ki a rendelkezésre lévő teret */
 }
 input{
   padding: 10px;
   margin: 15px; 
   text-align: center;
+  background-size: cover;
+  background-position: center;
 }
+
+form{
+  background-color: #8ba5be;
+  padding: 0px 60px;
+  border-radius: 10px;
+
+}
+h1{
+  color: black;
+  text-align: center;
+}
+button{
+  width: 40%;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  background-color: dimgrey;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+

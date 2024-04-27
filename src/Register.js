@@ -67,6 +67,7 @@ function Register() {
   return (
     <form onSubmit={handleSubmit}>      
       <div>
+        <h1>Regisztrálás</h1>
         <label htmlFor="username">Felhasználónév:</label>
         <input
           type="text"
