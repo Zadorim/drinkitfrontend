@@ -5,11 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-attachment: fixed;
-  background: linear-gradient(
-     rgba(255,255,255,0.7),
-    rgba(255,255,255,0.3)    
-  ),  
+  background-image: url("/public/img/bkg-blu.jpg");
+  background-size: cover;
+  background-position: center;
 }
   
 code {
@@ -22,27 +20,35 @@ code {
   margin-right: 10px; 
   width: 100px;  
   margin: auto;
-}
-footer{ 
-  background-color: #f8f9fa; 
+}footer {
+  background-color: #f8f9fa;
   padding: 10px 0;
   text-align: center;
   border-top: 1px solid #8ba5be;
   margin-bottom: 10px;
   font-weight: bold;
+  flex-shrink: 0; 
 }
+
+.btn-secondary {
+  background-color: #6c757d; 
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; 
+  border-color: #545b62;
+}
+
+.bi {
+  font-size: 24px; 
+  color: #17a2b8; 
+}
+
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-main {
-  flex: 1; /* Ez a rész biztosítja, hogy a tartalom kitöltse a rendelkezésre álló teret */
-}
-
-footer {
-  flex-shrink: 10px; /*Ez a sor biztosítja, hogy a footer ne töltse ki a rendelkezésre lévő teret */
 }
 input{
   padding: 10px;
@@ -60,10 +66,11 @@ form{
 }
 h1{
   color: black;
-  text-align: center;
+  text-align: left;  
 }
+
 button{
-  width: 40%;
+  width: 50%;
   height: 50px;
   padding: 10px;
   border: none;
@@ -76,4 +83,13 @@ button{
   margin-top: 15px;
   margin-bottom: 30px;
 }
-
+p{
+  text-align: bold, left;
+}
+.carousel-caption {
+  background-color: rgba(0,0,0,0.6); 
+  opacity: 0.9; 
+}
+.carousel-caption h3, .carousel-caption p {
+  color: white; 
+}

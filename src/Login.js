@@ -63,30 +63,40 @@ function Login({ setToken }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='container'>
+      <div className='cform-floating mb-3'>
         <h1>Bejelentkezés</h1>
-        <label htmlFor="username">Felhasználónév:</label>
+        <label htmlFor="floatingInput" className='form-label'>Felhasználónév:</label>
         <input
           type="text"
           className='form-control'
-          id="username"
+          id='floatingInput'
+          placeholder='felhasználó név'        
           value={username}
           autoComplete='off'
           onChange={handleUsernameChange}
           //onChange={(e) => setUsername(e.target.value)}
           required /><br />
       </div>
-      <div className='form-group'>
-        <label htmlFor="password">Jelszó:</label>
+      <div className='form-group mb-3'>
+        <label htmlFor="floatingInput"className='form-label'>Jelszó:</label>
         <input
           type="password"
           className='form-control'
-          id="password"
+          id="floatingInput"
+          placeholder='jelszó'          
           value={password}
           onChange={handlePasswordChange}
-          required autoComplete="current-password"
+          required autoComplete="current-password"                      
         />
-      </div>
+        <div className='form-check mb-3'>        
+        <input 
+        type="checkbox"
+        className='form-check-input'
+        id='check1' 
+        />       
+        <label className='form-check-label' form='cehck1'>Ellenőrizd!</label>     
+        </div>
+        </div>
       <button className='btn btn-secondary' type="submit">Bejelentkezés</button>
     </form>
   );

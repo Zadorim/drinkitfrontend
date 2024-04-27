@@ -23,15 +23,15 @@ const Navbar = ({onLoginClick, onRegisterClick, onAgeCheck}) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link data-bs-toggle="tooltip" title="Rólunk" className="nav-link active" to="/AboutPage">Főoldal</Link>
+              <Link className="nav-link active" to="/AboutPage">Főoldal</Link>
             </li>
             <li className="nav-item">
-              <Link data-bs-toggle="tooltip" title="Elmúltál 18?"className="nav-link active" to="/AgeConfirmationModal" onClick={onAgeCheck}>Vásárlási feltételek</Link>
+              <Link className="nav-link active" to="/AgeConfirmationModal" onClick={onAgeCheck}>Vásárlási feltételek</Link>
             </li>       
           </ul>
-          <ul className="navbar-nav navbar-center">
-          <li><Link to="/register" className="nav-link"><i className="fas fa-user"></i> Regisztráció</Link></li>
-          <li><Link to="/login" className="nav-link"><i className="fas fa-sign-in-alt"></i> Bejelentkezés</Link></li>
+          <ul className="navbar-nav navbar-center">          
+          <li><button className="nav-link btn btn-link text-white" onClick={onRegisterClick} style={{ background: 'none', border: 'none', padding: 0 }}><i className="bi bi-person-fill"></i> Regisztráció</button></li>
+          <li><button className="nav-link btn btn-link text-white" onClick={onLoginClick} style={{ background: 'none', border: 'none', padding: 0 }}><i className="bi bi-person-add"></i> Bejelentkezés</button></li>
         </ul>
         <form className="d-flex" onSubmit={handleSearchSubmit}>
         <input

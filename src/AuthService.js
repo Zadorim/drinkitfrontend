@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"
 
 
 let token;
@@ -21,7 +21,7 @@ export function Register(registerdata) {
     return axios.post('http://localhost:5130/auth/register', registerdata,
         response => {
             token = response.data.token;
-});
-}
+})
+};
 
-export default AuthSevice;
+export default AuthService;
