@@ -16,7 +16,7 @@ const Navbar = ({onLoginClick, onRegisterClick}) => {
   return (
     <nav className="navbar navbar-expand-lg bg-secondary navbar-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/TermekekPage"><i data-bs-toggle="tooltip" title="Hajrá!" className="bi bi-cart4"> </i> DrinkIt</Link>
+        <Link className="navbar-brand" to="/TermekekListPage"><i data-bs-toggle="tooltip" title="Hajrá!" className="bi bi-cart4"> </i> DrinkIt</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse"  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span  className="navbar-toggler-icon"></span>
         </button>
@@ -26,7 +26,7 @@ const Navbar = ({onLoginClick, onRegisterClick}) => {
               <Link className="nav-link active" to="/AboutPage">Főoldal</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/Termekek/TermekLista" >Termékek</Link>
+              <Link className="nav-link active" to="/TermekekListPage" >Termékek</Link>
             </li>       
           </ul>
           <ul className="navbar-nav navbar-center">          

@@ -7,11 +7,12 @@ function TermekekListPage() {
     
     const [termekek,setTermekek] = useState([]);
     const [isFetchPending, setFetchPending] = useState(false);
-   // const navigate = useNavigate();
+   // const navigate = useNavigate();  
 
+   
     useEffect(() => {
         setFetchPending(true);
-        fetch(`http://localhost:5130/api/Termekek`)
+        fetch(`http://localhost:5130/api/Termekek/TermekLista`)
         .then((response) =>response.json())
         .then((termekek) => setTermekek(termekek))
         .catch(console.log)
@@ -27,6 +28,17 @@ function TermekekListPage() {
             ) : (
                 <div>
                     <h2>Termékek</h2>
+                    <table id="termekTabla">
+                        <tr>
+                            <th>Id</th>
+                            <th>Név</th>
+                            <th>Ár</th>
+                            <th>Leírás</th>
+                            <th>Kategória</th>
+                            <th>Kép</th>
+                        </tr>
+                    </table>
+
                     {termekek.map((termek) => (
 
                         <div className="card col-sm-3 d-inline-block m-1 p-2">
@@ -35,7 +47,7 @@ function TermekekListPage() {
                             <h5 className="text-danger">{termek.leiras}</h5> 
                             <p className="text-danger"> {termek.kategoriak}</p>                           
                             <div className="card-body">
-                                <Link key={termek.id} to={"/Termekek/" + termek.id}>
+                                <Link key={termek.id} to={"/Termekek/TermekLista" + termek.id}>
                                     <img alt={termek.nev}
                                         className="img-fluid"
                                         style={{ maxHeight: 200 }}

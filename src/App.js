@@ -40,7 +40,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/AboutPage" element={<AboutPage />} />        
           <Route path="/Termekek/Új-Termek" element={<TermekekSinglePage />} />
-          <Route path="/Termekek" element={<TermekekListPage />} />
+          <Route path="/Termekek/TermekekLista" element={<TermekekListPage />} />
         </Routes>      
         <div>
           <Modal isOpen={isLoginModalOpen} onClose={handleCloseModal}>

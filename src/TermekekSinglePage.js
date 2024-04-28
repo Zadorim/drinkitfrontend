@@ -1,78 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 
 function TermekekSinglePage() {
-    const [termekek, setTermekek] = useState([]);
-    const {searchTerm, setSearchTerm} = useState("");   
-    const [sortType, setSortType] = useState("asc");
-    const [isFetchPending, setFetchPending] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+
+    const param = useParams();
+    const id = param.termekId;
+
+    const [termek, setTermek] = useState([]);
+    const [isPending, setPending] = useState(false);
+   
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = () => {
-        setFetchPending(true);
-        fetch(`http://localhost:5130/api/Termekek/TermekLista`)
-            .then(response => response.json())
-            .then(data => {
-                setTermekek(data);
-                console.log(data)
-                setFetchPending(false);
-            })
-            .catch(error => {
-                console.error("Hiba a termékek lekérdezésében:", error);
-                setFetchPending(false);
-            });
-    };
-    const filteredProducts = termekek.filter(termek =>
-        termek.nev.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-        setCurrentPage(1); 
-    };   
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
-
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(filteredProducts.length / itemsPerPage); i++) {
-        pageNumbers.push(i);
-    }
+        setPending(true);
+        (async() => {
+            try {
+            const response = await fetch(`http://localhost:5130/api/Termekek/${id}`, {credentials: "include"})
+            const termek = await response.json();
+            setTermek(termek); 
+                } catch (error) {
+                    console.log("Hiba a termékek lekérdezésében:", error);
+                }
+            finally {
+                setPending(false);
+            }
+        })();
+    }, [id]);   
 
     return (
-        <div>            
-            <input type="text" placeholder="Keresés..." onChange={handleSearchChange} />
-            <button onClick={() => setSortType("asc")}>Ár szerint növekvő</button>
-            <button onClick={() => setSortType("desc")}>Ár szerint csökkenő</button>
-            {isFetchPending ? (
-                <div>Loading...</div>
-            ) : (
-                <div>
-                    {currentItems.map(termek => (
-                        <div key={termek.id}>
-                            <p>{termek.nev} - {termek.ar} Ft</p>
-                            <p>{termek.leiras}</p>
-                            <p>{termek.kategoriak}</p>
-                            <Link to={`/termek/${termek.id}`}>Részletek</Link>
-                        </div>
-                    ))}
-                    <div>
-                        {pageNumbers.map(number => (
-                            <button key={number} onClick={() => setCurrentPage(number)}>
-                                {number}
-                            </button>
-                        ))}
+        <div className="p-5 m-auto text-center content bg-ivory">         
+            { isPending || !termek.id ? ( <div className="spinner-border"></div>) :(
+                <div className="card p-3">
+                    <div className="card-body">
+                        <h4>{termek.csoport}</h4>
+                        <h5 className="card-title">{termek.nev}</h5>
+                        <div className="lead">{termek.ar}.-Ft</div>
+                        <p>Készleten: {termek.quantity} db</p>
+                        <Link to={'/'}>
+                            <img className="'img-fluid rounded"
+                            style={{maxHeight: "500px"}}
+                            alt= " "
+                            src={termek.imgageURL ? termek.imgageURL: "https://unsplash.com/collections/qjiyVYafyWc/bor"}
+                            ></img>
+                        </Link>
                     </div>
                 </div>
-            )}
+            )}  
+                
         </div>
     );
 }
