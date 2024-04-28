@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Login({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [data, setData] = useState('');
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -27,28 +28,34 @@ function Login({ setToken }) {
         password: password
       });
       setToken(response.data.token)
-      if (response.data.token == '') {
+      if (response.data.token === '') {
         console.log("sikertelen bejelentkezés");
         return
       }
       console.log("sikeres bejelentkezés: " + response.data.token);
+      navigate('/TermekekPage');
       // Itt kezelhetem tovább a bejelentkezett felhasználó adatait, pl. átirányítás
     } catch (error) {
-      /*if (!error?.response) {
-        setErrorMsg('Bejelentkezési hiba');
-      } else if (error.response?.status === 400) {
-        setErrorMsg('Helytelen elhasználónév vagy jelszó');
-      } else if (error.response?. status === 401) {
-        setErrorMsg('Nem engedélyezett');
-      } else {
-        setErrorMsg("Hibás bejelentkezés");
-      }*/
-      console.error('Bejelentkezési hiba', error.response);
+      let errorMsg ='Bejelentkezési hiba';
+      if (error.response) {
+        switch (error.status){
+          case 400:
+            errorMsg = 'Helytelen felhasználónév vagy jelszó';
+            break;
+          case 401: 
+            errorMsg = 'Nem engedélyezett';
+            break;
+          default:
+            errorMsg= 'Hibás bejelentkezés';
+            break;
+          }
+      }
+      console.error(errorMsg, error.response);
       // Itt kezelhetem a hibákat, pl. hibás felhasználónév/jelszó
 
     }
   };
-  /*const fetchData = async  () => {
+  const fetchData = async  () => {
     try {
       const response = await axios.get('http://localhost:5130/auth/login', {
         headers: {
@@ -59,17 +66,17 @@ function Login({ setToken }) {
     } catch (error) {
       console.error("Adatok lekérése sikertelen!", error);
     }
-  }; */
+  }; 
 
   return (
     <form onSubmit={handleSubmit}>
       <div className='cform-floating mb-3'>
         <h1>Bejelentkezés</h1>
-        <label htmlFor="floatingInput" className='form-label'>Felhasználónév:</label>
+        <label htmlFor="usernameInput" className='form-label'>Felhasználónév:</label>
         <input
           type="text"
           className='form-control'
-          id='floatingInput'
+          id='usernameInput'
           placeholder='felhasználó név'        
           value={username}
           autoComplete='off'
@@ -78,11 +85,11 @@ function Login({ setToken }) {
           required /><br />
       </div>
       <div className='form-group mb-3'>
-        <label htmlFor="floatingInput"className='form-label'>Jelszó:</label>
+        <label htmlFor="passwordInput"className='form-label'>Jelszó:</label>
         <input
           type="password"
           className='form-control'
-          id="floatingInput"
+          id="passwordInput"
           placeholder='jelszó'          
           value={password}
           onChange={handlePasswordChange}
@@ -94,7 +101,7 @@ function Login({ setToken }) {
         className='form-check-input'
         id='check1' 
         />       
-        <label className='form-check-label' form='cehck1'>Ellenőrizd!</label>     
+        <label className='form-check-label' htmlFor='cehck1'>Rendben?</label>     
         </div>
         </div>
       <button className='btn btn-secondary' type="submit">Bejelentkezés</button>

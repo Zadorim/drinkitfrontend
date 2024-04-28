@@ -1,80 +1,56 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import {useState,useEffect} from "react";
+import { /*useNavigate*/ Link} from "react-router-dom";
 
 
 
 function TermekekListPage() {
-    const [termekek, setTermekek] = useState([]);
-    const {searchTerm, setSearchTerm} = useState("");   
-    const [sortType, setSortType] = useState("asc");
+    
+    const [termekek,setTermekek] = useState([]);
     const [isFetchPending, setFetchPending] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+   // const navigate = useNavigate();
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = () => {
         setFetchPending(true);
-        fetch(`http://localhost:5130/api/Termekek/TermekLista`)
-            .then(response => response.json())
-            .then(data => {
-                setTermekek(data);
-                console.log(data)
-                setFetchPending(false);
-            })
-            .catch(error => {
-                console.error("Hiba a termékek lekérdezésében:", error);
-                setFetchPending(false);
-            });
-    };
-    const filteredProducts = termekek.filter(termek =>
-        termek.nev.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-        setCurrentPage(1); 
-    };   
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
-
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(filteredProducts.length / itemsPerPage); i++) {
-        pageNumbers.push(i);
-    }
-
+        fetch(`http://localhost:5130/api/Termekek`)
+        .then((response) =>response.json())
+        .then((termekek) => setTermekek(termekek))
+        .catch(console.log)
+        .finally(() => {
+            setFetchPending(false);
+            //navigate('/');
+        });
+    }, [/*navigate*/]);
     return (
-        <div>            
-            <input type="text" placeholder="Keresés..." onChange={handleSearchChange} />
-            <button onClick={() => setSortType("asc")}>Ár szerint növekvő</button>
-            <button onClick={() => setSortType("desc")}>Ár szerint csökkenő</button>
+        <div className="p-5 m-auto text-center content bg-ivory">
             {isFetchPending ? (
-                <div>Loading...</div>
+                <div className="spinner-border"></div>
             ) : (
                 <div>
-                    {currentItems.map(termek => (
-                        <div key={termek.id}>
-                            <p>{termek.nev} - {termek.ar} Ft</p>
-                            <p>{termek.leiras}</p>
-                            <p>{termek.kategoriak}</p>
-                            <Link to={`/termek/${termek.id}`}>Részletek</Link>
+                    <h2>Termékek</h2>
+                    {termekek.map((termek) => (
+
+                        <div className="card col-sm-3 d-inline-block m-1 p-2">
+                            <h6 className="text-dark"> {termek.nev}</h6>
+                            <h5 className="text-danger"> {termek.ar}</h5>
+                            <h5 className="text-danger">{termek.leiras}</h5> 
+                            <p className="text-danger"> {termek.kategoriak}</p>                           
+                            <div className="card-body">
+                                <Link key={termek.id} to={"/Termekek/" + termek.id}>
+                                    <img alt={termek.nev}
+                                        className="img-fluid"
+                                        style={{ maxHeight: 200 }}
+                                        src={termek.kepneve ? termek.kepneve :
+                                            "https://via.placeholder.com/400x800"} /></Link>
+                                <br />
+                                <Link key="y" to={"/mod-termek/" + termek.id}>
+                                    <i className="bi bi-pencil"></i></Link> &nbsp;&nbsp;
+                                    <Link key="x" to={"/del-termek/" + termek.id}><i className="bi bi-trash3"></i></Link>
+                            </div>
                         </div>
                     ))}
-                    <div>
-                        {pageNumbers.map(number => (
-                            <button key={number} onClick={() => setCurrentPage(number)}>
-                                {number}
-                            </button>
-                        ))}
-                    </div>
                 </div>
             )}
         </div>
     );
 }
-
 export default TermekekListPage;

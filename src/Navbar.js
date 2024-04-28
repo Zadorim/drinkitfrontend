@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {useSearch} from "./SearchContext";
 
-const Navbar = ({onLoginClick, onRegisterClick, onAgeCheck}) => {
+const Navbar = ({onLoginClick, onRegisterClick}) => {
   const { searchTerm, setSearchTerm } = useSearch();
 
   const handleSearchChange = (e) => {
@@ -26,12 +26,12 @@ const Navbar = ({onLoginClick, onRegisterClick, onAgeCheck}) => {
               <Link className="nav-link active" to="/AboutPage">Főoldal</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/TermekekPge" >Termékek</Link>
+              <Link className="nav-link active" to="/Termekek/TermekLista" >Termékek</Link>
             </li>       
           </ul>
           <ul className="navbar-nav navbar-center">          
-          <li><button className="nav-link btn btn-link text-white" onClick={onRegisterClick} style={{ background: 'none', border: 'none', padding: 0 }}><i className="bi bi-person-fill"></i> Regisztráció</button></li>
-          <li><button className="nav-link btn btn-link text-white" onClick={onLoginClick} style={{ background: 'none', border: 'none', padding: 0 }}><i className="bi bi-person-add"></i> Bejelentkezés</button></li>
+          <li><button  className="nav-link btn btn-link text-white" onClick={onRegisterClick} style={{ background: 'img-fluid', border: '5px', padding: 0 }}><i className="bi bi-person-fill"></i> Regisztráció</button></li>
+          <li><button  className="nav-link btn btn-link text-white" onClick={onLoginClick} style={{ background: 'none', border: 'none', padding: 0 }}><i className="bi bi-person-add"></i> Bejelentkezés</button></li>
         </ul>
         <form className="d-flex" onSubmit={handleSearchSubmit}>
         <input
@@ -42,7 +42,7 @@ const Navbar = ({onLoginClick, onRegisterClick, onAgeCheck}) => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <button className="btn btn-outline-light" type="submit">Keresés</button>
+        <button id='navkereses' className="btn btn-outline-light" type="submit">Keresés</button>
       </form>
         </div>
       </div>

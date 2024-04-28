@@ -9,8 +9,8 @@ import Register from './Register';
 import Modal from './Modal';
 import AboutPage from './AboutPage';
 import SearchProvider from './SearchContext';
-import TermekekListaPage from './TermekekListPage';
-import TermekekPage from './TermekekPage';
+import TermekekSinglePage from './TermekekSinglePage';
+import TermekekListPage from './TermekekListPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -39,8 +39,8 @@ function App() {
           <Route path="/Login" element={<Login setToken={setToken} />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/AboutPage" element={<AboutPage />} />        
-          <Route path="/TermekekListPage" element={<TermekekListaPage />} />
-          <Route path="/TermekekPage" element={<TermekekPage />} />
+          <Route path="/Termekek/Új-Termek" element={<TermekekSinglePage />} />
+          <Route path="/Termekek" element={<TermekekListPage />} />
         </Routes>      
         <div>
           <Modal isOpen={isLoginModalOpen} onClose={handleCloseModal}>

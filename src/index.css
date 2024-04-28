@@ -3,7 +3,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("/public/img/bkg-blu.jpg");
   background-size: cover;
@@ -20,7 +20,8 @@ code {
   margin-right: 10px; 
   width: 100px;  
   margin: auto;
-}footer {
+}
+footer {
   background-color: #f8f9fa;
   padding: 10px 0;
   text-align: center;
@@ -42,7 +43,7 @@ code {
 
 .bi {
   font-size: 24px; 
-  color: #17a2b8; 
+  color: #29cfe9; 
 }
 
 .App {
@@ -50,10 +51,15 @@ code {
   flex-direction: column;
   min-height: 100vh;
 }
-input{
-  padding: 10px;
-  margin: 15px; 
-  text-align: center;
+
+input.form-control {
+  width: 70%;  /* Szélesség beállítása */
+  padding: 8px 12px; /* Jobb belső tér */
+  margin: 15px; /* Jobb margó a gombhoz képest */
+  border: 2px solid #ccc;  
+  cursor: pointer;
+  border-radius: 6px; /* Kerekített szegélyek */
+  text-align: center; 
   background-size: cover;
   background-position: center;
 }
@@ -69,20 +75,21 @@ h1{
   text-align: left;  
 }
 
-button{
+button {
   width: 50%;
   height: 50px;
   padding: 10px;
   border: none;
-  background-color: dimgrey;
+  background-color: #007bff; 
   color: white;
-  border-radius: 5px;
+  border-radius: 6px;
   font-weight: bold;
   font-size: 18px;
   cursor: pointer;
-  margin-top: 15px;
-  margin-bottom: 30px;
+  display: block;  
+  margin: 20px auto; 
 }
+
 p{
   text-align: bold, left;
 }
@@ -96,3 +103,36 @@ p{
 label{
   text-align: left bold;
 }
+.udv {
+  font-size: 24px; 
+  color: #ffffff; 
+  text-shadow: 2px 2px 4px #000000; 
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  margin: 20px auto; 
+  max-width: 600px; 
+  text-align: center;
+}
+
+button#navkereses {
+  width: 50%;
+  height: 50px;
+  padding: 10px; /* Több hely a szövegnek */
+  background-color: #2273ca; 
+  color: white;
+  border-radius: 6px; 
+  font-weight: bold;
+  cursor: pointer;
+  display: block; 
+  margin: 20px;    
+}
+.d-grid {
+  display: -ms-grid;
+  display: grid;
+}
+.d-inline-grid {
+  display: -ms-inline-grid;
+  display: inline-grid;
+}
+
